@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>issue</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./static/css/billCommon.css">
+    <link rel="stylesheet" href="./static/css/popout.css">
+    <script src="./static/js/jquery.min.js" charset="utf-8"></script>
+    <script src="./static/js/billCommon.js" charset="utf-8"></script>
+    <script src="./static/js/popout.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div id="popout">
+    <div class="popout">
+        <div class="">显示结果信息</div>
+        <p>
+            <button type="button" name="button">好的</button>
+        </p>
+    </div>
+</div>
+<div class="container">
+    <div class="bill">
+        <div class="top">
+            <span><b>区块链票据</b></span>
+            <div>
+            <span>
+              <b></b>
+                A公司
+            </span>
+                <span class="exit">退出</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <div id="box">
+                    <h3 onclick="show()">
+                        <img src="./static/images/menu.png" alt="">
+                        菜单
+                        <span>
+                  <img src="./static/images/jt2.png" alt="">
+                </span>
+                    </h3>
+                    <div id="list">
+                        <ul>
+                            <li onclick="location.href='/issue'">发布票据</li>
+                            <li style="background:#f0f3f4;" onclick="location.href='/myBills'">我的票据</li>
+                            <li onclick="location.href='/waitEndorBills'">待签收票据</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                {{if .Flag}}
+                    <div>
+                    {{.Msg}}
+                    </div>
+                {{end}}
+                <!-- 我的票据 -->
+                <div class="myBill">
+                    <div id="myBillDetail">
+                        <table>
+                            <caption style="text-align:left;margin-bottom:10px;">
+                                <b style="font-size:20px;">票据信息</b>
+                                <br/>票据状态：<span>新发布</span>
+                            </caption>
+                            <tr>
+                                <td colspan="4">历史流转记录</td>
+                            </tr>
+                            <tr>
+                                <td>TxID</td>
+                                <td>操作业务</td>
+                                <td>操作描述</td>
+                                <td>当前持票人</td>
+                            </tr>
+                            {{range .Bill.History}}
+                            <tr>
+                                <td>{{.TxId}}</td>
+                                <td>
+                                    {{if eq .Bill.State "NewPublish"}}
+                                        票据新发布
+                                    {{else if eq .Bill.State "EndorseWaitSign"}}
+                                        票据待签收
+                                    {{else if eq .Bill.State "EndorseSigned"}}
+                                        票据已签收
+                                    {{else if eq .Bill.State "EndorseReject"}}
+                                        票据拒签收
+                                    {{end}}
+                                </td>
+                                <td>
+                                    {{if eq .Bill.State "NewPublish"}}
+                                        {{.Bill.HoldrAcct}}
+                                    {{else if eq .Bill.State "EndorseWaitSign"}}
+                                        {{.Bill.HoldrAcct}}向{{.Bill.WaitEndorseAcct}}发起背书请求
+                                    {{else if eq .Bill.State "EndorseSigned"}}
+                                        {{.Bill.HoldrAcct}}签收了票据
+                                    {{else if eq .Bill.State "EndorseReject"}}
+                                        {{.Bill.RejectEndorseAcct}}拒签票据
+                                    {{end}}
+                                </td>
+                                <td>{{.Bill.HoldrAcct}}</td>
+                            </tr>
+                            {{end}}
+                        </table>
+                        <div class="pub1">
+                            <p>票据号码</p>
+                            <input type="text" name="BillInfoID" value="{{.Bill.BillInfoID}}" disabled/>
+                            <p>票据金额</p>
+                            <input type="text" name="BillInfoAmt" value="{{.Bill.BillInfoAmt}}" disabled/>
+                            <p>票据类型</p>
+                            <input type="text" name="BillInfoType" value="{{.Bill.BillInfoType}}" disabled/>
+                        </div>
+                        <div class="pub2">
+                            <p>票据出票日期</p>
+                            <input type="text" name="BillInfoIssueDate" value="{{.Bill.BillInfoIssueDate}}" disabled/>
+                            <p>票据到期日期</p>
+                            <input type="text" name="BillInfoDueDate" value="{{.Bill.BillInfoDueDate}}" disabled/>
+                        </div>
+                        <div class="pub3">
+                            <p>出票人名称</p>
+                            <input type="text" name="DrwrAcct" value="{{.Bill.DrwrAcct}}" disabled/>
+                            <p>出票人证件号码</p>
+                            <input type="text" name="DrwrCmID" value="{{.Bill.DrwrCmID}}" disabled/>
+                            <p>承兑人名称</p>
+                            <input type="text" name="AccptrAcct" value="{{.Bill.AccptrAcct}}" disabled/>
+                            <p>承兑人证件号码</p>
+                            <input type="text" name="AccptrCmID" value="{{.Bill.AccptrCmID}}" disabled/>
+                        </div>
+                        <div class="pub4">
+                            <p>收款人名称</p>
+                            <input type="text" name="PyeeAcct" value="{{.Bill.PyeeAcct}}" disabled/>
+                            <p>收款人证件号码</p>
+                            <input type="text" name="PyeeCmID" value="{{.Bill.PyeeCmID}}" disabled/>
+                            <p>持票人名称</p>
+                            <input type="text" name="HoldrAcct" value="{{.Cuser.Acct}}" disabled/>
+                            <p>持票人证件号码</p>
+                            <input type="text" name="HoldrCmID" value="{{.Cuser.CmId}}" disabled/>
+                        </div>
+                        <!-- 票据状态不能为待背书状态  -->
+                        {{if ne .Bill.State "EndorseWaitSign"}}
+                        <p>若发起背书请填写被背书人信息</p>
+                        <form action="/endorse" method="post">
+                            <p>
+                                <span>
+                                    待背书人名称
+                                    <input type="text" name="waitEndorseAcct"/>
+                                </span>
+                                <br/>
+                                <span>
+                                    待背书人证件号码
+                                    <input type="text" name="waitEndorseCmId"/>
+                                </span>                                
+                            </p>
+                            <p>
+                                <span><input type="hidden" name="billNo" value="{{.Bill.BillInfoID}}"/></span>
+                                <span><input type="submit" value="发起背书"/></span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span><input type="reset" value="重置"/></span>
+                            </p>
+                        </form>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

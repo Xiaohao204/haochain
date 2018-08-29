@@ -1,0 +1,264 @@
+@charset "UTF-8";
+html,body{
+  height:100%;
+  margin:0;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  background: #f0f3f4;
+  position: relative;
+  font-family: '微软雅黑';
+}
+.bill .top{
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  background-color: #1199c4;
+  padding-left: 50px;
+  font-size: 20px;
+}
+.bill .top div{
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  margin-left: 150px;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.bill .top div b{
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  border-top: 10px solid #fff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.bill .top div>span:nth-of-type(2){
+  width: 80px;
+  text-align: center;
+  background-color: #1199c4;
+  position: absolute;
+  top:60px;
+  left: 10px;
+  display: none;
+  z-index: 10;
+}
+.main{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+.main .left{
+  color: #58666e;
+  font-family: '微软雅黑';
+  /* width: 200px; */
+  width: 16%;
+  height: 100%;
+  background-color: #dde6e9;
+  display: inline-block;
+}
+h3{
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: normal;
+  margin: 0;
+  padding-top: 10px;
+}
+h3:hover{
+  cursor: pointer;
+}
+h3>img{
+  width: 20px;
+  height: 20px;
+  margin: 4px 20px auto;
+  vertical-align: text-top;
+}
+h3>span img{
+  width: 15px;
+  height: 8px;
+  margin-left: 40%;
+}
+#list{
+  background-color: #e4eaec;
+}
+#list li{
+  font-size: 18px;
+  list-style: none;
+  line-height: 50px;
+  padding-left: 70px;
+  margin-left: -45px;
+}
+#list li:hover{
+  cursor: pointer;
+  background: #f0f3f4;
+}
+.right{
+  width: 84%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  overflow-y: scroll;
+  /* left: 26%; */
+}
+.right table{
+  color: #58666e;
+  border: 1px solid #dee5e7;
+  border-collapse:collapse;
+  margin-top: 40px;
+  background-color: #f6f8f8;
+}
+.right table tr:nth-child(even){
+  background-color: #fff;
+}
+.right table td,.right table th{
+  width: 287px;
+  height: auto;
+  text-align: left;
+  word-break: break-all;
+  word-wrap: break-word;
+  padding: 10px;
+  border-top: 1px solid #dee5e7;
+  border-bottom: 1px solid #dee5e7;
+}
+/* 详情按钮 */
+.detail{
+  display: block;
+  width: 80px;
+  height:auto;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #27c24c;
+}
+.detail:hover{
+  cursor: pointer;
+}
+.right>div{
+  position: absolute;
+  display: none;
+}
+.right>div:nth-of-type(1){
+  display: block;
+}
+.current{
+  background:#f0f3f4;
+}
+.publish>div,#myBillDetail>div,#myUnBillDetail>div{
+  margin-top: 20px;
+}
+.publish>div>div,#myBillDetail>div,#myUnBillDetail>div{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 30px;
+}
+.publish>div>div>input,#myBillDetail>div>input,#myUnBillDetail>div>input{
+  width: 260px;
+  height: 20px;
+  line-height: 20px;
+  padding: 10px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+}
+#myBillDetail>div>input,#myUnBillDetail>div>input{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.publish>div>p{
+  text-align: right;
+  padding-right: 334px;
+}
+.publish>div>p span {
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  background-color: #27c24c;
+  padding: 10px;
+  margin: 30px;
+  border-radius: 6px;
+}
+.publish>div>p span input{
+  border: none;
+  background: none;
+  color: white;
+  font-size: 18px;
+  line-height: 20px;
+}
+.publish>div>p span:hover{
+  cursor: pointer;
+}
+.publish>div>p span:nth-of-type(2){
+  margin-left: -10px;
+  border: 1px solid lightgrey;
+}
+/* 详情信息 */
+#myBillDetail,#myUnBillDetail{
+  /* display: none; */
+  color: #58666e;
+}
+#myBillDetail>form>p:nth-of-type(2) span,#myBillDetail form p:nth-of-type(1) span{
+  display: inline-block;
+  width: 650px;
+  height: auto;
+}
+#myBillDetail form>p:nth-of-type(2) span{
+  display: inline-block;
+  width: 120px;
+  color: #fff !important;
+}
+#myBillDetail form>p:nth-of-type(1) span:nth-of-type(1){
+  letter-spacing: 5px;
+}
+#myBillDetail form>p:nth-of-type(2) span:nth-of-type(2) input{
+  color: #333 !important;
+  background: #fff;
+}
+#myBillDetail>p:nth-of-type(2) span input,#myBillDetail form p:nth-of-type(1) span input{
+  width: 500px;
+  height: 20px;
+  padding: 10px;
+  border:1px solid lightgrey;
+  border-radius: 4px;
+  margin-top: 10px;
+  outline: none;
+}
+#myBillDetail>p:nth-of-type(3),#myUnBillDetail>p,#myBillDetail form p:nth-of-type(2) span input{
+  margin-bottom: 150px;
+}
+#myBillDetail>p:nth-of-type(3) span,#myUnBillDetail>p span,#myBillDetail form p:nth-of-type(2) span input{
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #27c24c;
+  border-radius: 4px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+#myUnBillDetail>p a{
+  color: #fff;
+  line-height: 20px;
+  text-decoration: none;
+}
+#myUnBillDetail>p a:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+#myBillDetail>p:nth-of-type(3) span:nth-of-type(2),#myUnBillDetail>p span:nth-of-type(3){
+  color: #58666e;
+  border: 1px solid lightgrey;
+}
+#myUnBillDetail>p span:nth-of-type(3){
+  background-color: #fff;
+}

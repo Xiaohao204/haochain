@@ -1,0 +1,53 @@
+@charset "UTF-8";
+html,body{
+  height:100%;
+  margin:0;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  background: #f0f3f4;
+  position: relative;
+  font-family: '微软雅黑';
+}
+.login{
+  width: 500px;
+  height: 400px;
+  /* background: #fff; */
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  margin-left: -250px;
+  text-align: center;
+}
+.login h2{
+  color: #58666e;
+}
+.login p{
+  color: #7a666e;
+}
+.login input,.login button{
+  display: block;
+  color: #7a666e;
+  font-family: '微软雅黑';
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+  outline: none;
+}
+.login input{
+  width: 260px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #e7ecee;
+  border-radius: 4px;
+}
+.login button{
+  width: 300px;
+  border: none;
+  color: #fff;
+  background-color: #9e98ce;
+  margin-top: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>我的票据</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./static/css/billCommon.css">
+    <link rel="stylesheet" href="./static/css/popout.css">
+    <script src="./static/js/jquery.min.js" charset="utf-8"></script>
+    <script src="./static/js/billCommon.js" charset="utf-8"></script>
+    <script src="./static/js/popout.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div id="popout">
+    <div class="popout">
+        <div class="">错误</div>
+        <p>
+            <button type="button" name="button">好的</button>
+        </p>
+    </div>
+</div>
+<div class="container">
+    <div class="bill">
+        <div class="top">
+            <span><b>区块链票据</b></span>
+            <div>
+            <span>
+              <b></b>
+              A公司
+            </span>
+                <span class="exit">退出</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <div id="box">
+                    <h3 onclick="show()">
+                        <img src="./static/images/menu.png" alt="">
+                        菜单
+                        <span>
+                  <img src="./static/images/jt2.png" alt="">
+                </span>
+                    </h3>
+                    <div id="list">
+                        <ul>
+                            <li onclick="location.href='/issue'">发布票据</li>
+                            <li style="background:#f0f3f4;" onclick="location.href='/myBills'">我的票据</li>
+                            <li onclick="location.href='/waitEndorBills'">待签收票据</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <!-- 我的票据 -->
+                <div class="myBill">
+                    <table>
+                        <tr>
+                            <td colspan="4">票据列表</td>
+                        </tr>
+                        <tr>
+                            <th>票据号</th>
+                            <th>票据状态</th>
+                            <th>所属关系</th>
+                            <th>操作</th>
+                        </tr>
+                        {{range .Bills}}
+                        <tr>
+                            <td>{{.BillInfoID}}</td>
+                            <td>
+                            {{if eq .State "NewPublish"}}
+                                票据新发布
+                            {{end}}
+                            {{if eq .State "EndorseWaitSign"}}
+                                待{{.WaitEndorseAcct}}签收
+                            {{end}}
+                            {{if eq .State "EndorseSigned"}}
+                                票据签收成功
+                            {{end}}
+                            {{if eq .State "EndorseReject"}}
+                                {{.RejectEndorseAcct}}拒签收
+                            {{end}}
+                            </td>
+                            <td>{{.HoldrAcct}}持有</td>
+                            <td><a class="detail" href="/billInfo?billInfoNo={{.BillInfoID}}">详情</a></td>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

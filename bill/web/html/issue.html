@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>发布新票据</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./static/css/billCommon.css">
+    <link rel="stylesheet" href="./static/css/popout.css">
+    <script src="./static/js/jquery.min.js" charset="utf-8"></script>
+    <script src="./static/js/billCommon.js" charset="utf-8"></script>
+    <script src="./static/js/popout.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div id="popout">
+    <div class="popout">
+        <div class="">发布票据结果信息</div>
+        <p>
+            <button type="button" name="button">好的</button>
+        </p>
+    </div>
+</div>
+<div class="container">
+    <div class="bill">
+        <div class="top">
+            <span><b>区块链票据</b></span>
+            <div>
+            <span>
+              <b></b>
+              A公司
+            </span>
+                <span class="exit">退出</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <div id="box">
+                    <h3 onclick="show()">
+                        <img src="./static/img/menu.png" alt="">
+                        菜单
+                        <span>
+                  <img src="./static/img/jt2.png" alt="">
+                </span>
+                    </h3>
+                    <div id="list">
+                        <ul>
+                            <li onclick="location.href='/issue'">发布票据</li>
+                            <li style="background:#f0f3f4;" onclick="location.href='/myBills'">我的票据</li>
+                            <li onclick="location.href='/waitEndorBills'">待签收票据</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                {{if .Flag}}
+                <div>
+                    {{.Msg}}
+                </div>
+                {{end}}
+                <form action="/issue" method="post">
+                    <!-- 发布票据 -->
+                    <div class="publish">
+                        <div class="">
+                            <div class="pub1">
+                                <p>票据号码</p>
+                                <input type="text" name="billInfoID" value="" placeholder="BOC10000001"/>
+                                <p>票据金额</p>
+                                <input type="text" name="billInfoAmt" value="" placeholder="20000"/>
+                                <p>票据类型</p>
+                                <input type="text" name="billInfoType" value="" placeholder="111"/>
+                            </div>
+                            <div class="pub2">
+                                <p>票据出票日期</p>
+                                <input type="text" name="billInfoIsseDate" value="" placeholder="20180501"/>
+                                <p>票据到期日期</p>
+                                <input type="text" name="billInfoDueDate" value="" placeholder="20180510"/>
+                            </div>
+                            <div class="pub3">
+                                <p>出票人名称</p>
+                                <input type="text" name="drwrCmAcct" value="" placeholder="111"/>
+                                <p>出票人证件号码</p>
+                                <input type="text" name="drwrCmID" value="" placeholder="111"/>
+                                <p>承兑人名称</p>
+                                <input type="text" name="accptrAcct" value="" placeholder="111"/>
+                                <p>承兑人证件号码</p>
+                                <input type="text" name="accptrCmID" value="" placeholder="111"/>
+                            </div>
+                            <div class="pub4">
+                                <p>收款人名称</p>
+                                <input type="text" name="pyeeAcct" value="" placeholder="111"/>
+                                <p>收款人证件号码</p>
+                                <input type="text" name="pyeeCmID" value="" placeholder="111"/>
+                                <p>持票人名称</p>
+                                <input type="text" name="holdrAcct" value="{{.Cus er.Acct}}" />
+                                <p>持票人证件号码</p>
+                                <input type="text" name="holdrCmID" value="{{.Cuser.CmId}}" />
+                            </div>
+                            <p>
+                                <span><input type="submit" class="issueBtn" value="提交"/></span>
+                                <span><input type="reset" value="取消"/></span>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
